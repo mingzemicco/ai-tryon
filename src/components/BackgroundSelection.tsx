@@ -15,9 +15,18 @@ const BACKGROUNDS: BackgroundOption[] = [
   // Use paths relative to the public directory root
   { id: 'beach', name: 'Beach', representation: { type: 'image', value: '/backgrounds/beach.png' } }, 
   { id: 'city', name: 'City', representation: { type: 'image', value: '/backgrounds/city.png' } }, 
-  { id: 'studio', name: 'Studio', representation: { type: 'image', value: '/backgrounds/studio.png' } }, 
-  { id: 'nature', name: 'Nature', representation: { type: 'image', value: '/backgrounds/nature.png' } }, 
-  { id: 'abstract', name: 'Abstract', representation: { type: 'image', value: '/backgrounds/abstract.png' } } 
+  { id: 'studio', name: 'Studio', representation: { type: 'image', value: '/backgrounds/studio.png' } },
+  { id: 'nature', name: 'Nature', representation: { type: 'image', value: '/backgrounds/nature.png' } },
+  { id: 'abstract', name: 'Abstract', representation: { type: 'image', value: '/backgrounds/abstract.png' } },
+  // --- Added 8 Backgrounds ---
+  { id: 'gradient_blue', name: 'Gradient Blue', representation: { type: 'image', value: '/backgrounds/gradient_blue.png' } },
+  { id: 'office', name: 'Office', representation: { type: 'image', value: '/backgrounds/office.png' } },
+  { id: 'park', name: 'Park', representation: { type: 'image', value: '/backgrounds/park.png' } },
+  { id: 'cafe', name: 'Cafe', representation: { type: 'image', value: '/backgrounds/cafe.png' } },
+  { id: 'library', name: 'Library', representation: { type: 'image', value: '/backgrounds/library.png' } },
+  { id: 'airport', name: 'Airport', representation: { type: 'image', value: '/backgrounds/airport.png' } }, // Changed from Street
+  { id: 'mountain', name: 'Mountain', representation: { type: 'image', value: '/backgrounds/mountain.png' } },
+  { id: 'sky', name: 'Sky', representation: { type: 'image', value: '/backgrounds/sky.png' } }
 ];
 
 // Define props interface

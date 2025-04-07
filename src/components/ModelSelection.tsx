@@ -44,18 +44,8 @@ export default function ModelSelection({ onSelect, selectedGender }: ModelSelect
     <div className="space-y-4">
        {/* TODO: Add Search bar and potentially filter buttons */}
        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-         {/* Placeholder for "Create Your Model" / "Keep Pose Model" from screenshot */}
-         {/* These would likely be separate components or require different logic */}
-         <div className="border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center p-4 aspect-w-1 aspect-h-1 text-center text-gray-500 min-h-[150px]">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mb-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-            <span className="text-sm font-medium">Create Your Model</span>
-            <span className="text-xs text-gray-400">Max 13 images</span>
-            {/* TODO: Add info icon */}
-         </div>
-          <div className="border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center p-4 aspect-w-1 aspect-h-1 text-center text-gray-500 min-h-[150px]">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mb-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v4m0 0h-4m4 0l-5-5" /></svg>
-            <span className="text-sm font-medium">Keep Pose Model</span>
-         </div>
+         {/* Removed "Create Your Model" placeholder */}
+         {/* Removed "Keep Pose Model" placeholder */}
 
          {/* Actual Selectable Models */}
          {displayModels.map((model) => (

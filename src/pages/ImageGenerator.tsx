@@ -22,17 +22,48 @@ export default function ImageGenerator() {
       console.log('Calling Gemini API with:', {
         clothingImageUrl,
         modelGender,
-        background: selectedBackground
+        background: selectedBackground,
+        // Include new parameters
+        sceneDescription: prompt,
+        poseFreedom: poseFreedom,
+        includeSkinDetails: skinDetail === 'textured', // Map state to boolean
+        compositionStyle: composition === 'scene' ? 'Reference Scene' : 'Reference Original Image' // Map state to string (Removed duplicate line below)
       });
-      const result = await generateImage({
+
+      // Prepare request data
+      const requestData = {
         clothingImageUrl: clothingImageUrl,
         modelGender: modelGender,
-        background: selectedBackground
-      });
-      console.log('Received generated images:', result.images);
-      setGeneratedImages(result.images);
+        background: selectedBackground,
+        sceneDescription: prompt || undefined,
+        poseFreedom: poseFreedom,
+        includeSkinDetails: skinDetail === 'textured',
+        compositionStyle: composition === 'scene' ? 'Reference Scene' : 'Reference Original Image'
+      };
+
+      // Array to hold all generated images
+      const allGeneratedImages: string[] = [];
+
+      // Loop based on numImages state
+      for (let i = 0; i < numImages; i++) {
+        console.log(`Generating image ${i + 1} of ${numImages}...`);
+        const result = await generateImage(requestData);
+        if (result.images && result.images.length > 0) {
+          // Assuming generateImage returns an array, potentially with multiple images per call,
+          // but for simplicity here, we'll just take the first one if multiple exist per call,
+          // or adjust if the API guarantees only one image per call.
+          // Let's assume it returns one image URL per call in the 'images' array.
+          allGeneratedImages.push(...result.images); 
+        } else {
+           console.warn(`Call ${i + 1} did not return any images.`);
+        }
+      }
+
+      console.log(`Received ${allGeneratedImages.length} generated images in total.`);
+      setGeneratedImages(allGeneratedImages);
+
     } catch (error) {
-      console.error('Generation failed:', error);
+      console.error(`Generation failed after ${generatedImages.length} successful calls:`, error); // Show how many succeeded before failure
       alert('Image generation failed. Please try again.');
     } finally {
       setIsLoading(false);
@@ -170,7 +201,7 @@ export default function ImageGenerator() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Number of Images to Generate</label>
             <div className="flex flex-wrap gap-2">
-              {[1, 2, 4, 8, 12, 16].map((num) => (
+              {[1, 2, 3, 4].map((num) => ( // Changed options to 1, 2, 3, 4
                 <button
                   key={num}
                   onClick={() => setNumImages(num)}

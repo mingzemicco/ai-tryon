@@ -10,6 +10,11 @@ interface GenerationRequest {
   clothingImageUrl: string;
   modelGender: string;
   background: string;
+  // New parameters
+  sceneDescription?: string; // Optional text
+  poseFreedom?: number; // Percentage (0-100), default 50
+  includeSkinDetails?: boolean; // Toggle
+  compositionStyle?: string; // Text/Dropdown value
 }
 
 interface GenerationResponse {
@@ -62,7 +67,12 @@ export async function generateImage(request: GenerationRequest): Promise<Generat
       const prompt = `A realistic fashion young man/woman is wearing this cloth, he/she stands straight and looks confident. The model should have a confident posture, clear facial features, and even lighting. The clothing should be well-fitted and showcase all details clearly. The background should be simple and neutral to highlight the outfit.
       - The clothing from the image
       - The model is a ${request.modelGender} 
-      - Background is ${request.background}`;
+      - Background is ${request.background}` +
+      // Append new parameters conditionally
+      (request.sceneDescription ? `\n      - Scene Description: ${request.sceneDescription}` : '') +
+      `\n      - Model Pose AI Freedom: ${request.poseFreedom ?? 50}%` + // Default to 50 if not provided
+      (request.includeSkinDetails ? `\n      - Include realistic skin details.` : '') +
+      (request.compositionStyle ? `\n      - Composition Style: ${request.compositionStyle}` : '');
 
       // Convert blob to base64 (browser compatible)
       const blobToBase64 = (blob: Blob): Promise<string> => {
