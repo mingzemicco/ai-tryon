@@ -59,10 +59,10 @@ export async function generateImage(request: GenerationRequest): Promise<Generat
 
       const clothingImage = await fetchImage(request.clothingImageUrl);
 
-      const prompt = `Generate a fashion model image wearing the cloth:
+      const prompt = `A realistic fashion young man/woman is wearing this cloth, he/she stands straight and looks confident. The model should have a confident posture, clear facial features, and even lighting. The clothing should be well-fitted and showcase all details clearly. The background should be simple and neutral to highlight the outfit.
       - The clothing from the image
-      - A ${request.modelGender} model
-      - Background: ${request.background}`;
+      - The model is a ${request.modelGender} 
+      - Background is ${request.background}`;
 
       // Convert blob to base64 (browser compatible)
       const blobToBase64 = (blob: Blob): Promise<string> => {
