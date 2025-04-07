@@ -7,7 +7,8 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node", // Changed for Vercel compatibility
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,

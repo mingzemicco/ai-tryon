@@ -40,13 +40,12 @@ export default function ImageUpload({ onUpload, currentImage }: ImageUploadProps
       const formData = new FormData();
       formData.append('file', file);
       
+      // Removed duplicate declaration above
+      
       const response = await fetch('/api/upload', {
         method: 'POST',
-        headers: {
-          // Add the filename header required by the Vercel function
-          'x-vercel-filename': file.name, 
-        },
-        body: file, // Send the raw file directly, as the Vercel function reads the stream
+        // No specific headers needed here when sending FormData; browser sets Content-Type
+        body: formData, // Send FormData object
       });
 
       if (!response.ok) {
