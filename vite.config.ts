@@ -11,13 +11,7 @@ export default defineConfig({
     port: 3000,
     open: true,
     strictPort: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-        rewrite: (path) => path
-      }
-    }
+    // Removed proxy, as Vercel handles /api routing directly to Serverless Functions
   },
   build: {
     outDir: 'dist',

@@ -42,7 +42,11 @@ export default function ImageUpload({ onUpload, currentImage }: ImageUploadProps
       
       const response = await fetch('/api/upload', {
         method: 'POST',
-        body: formData,
+        headers: {
+          // Add the filename header required by the Vercel function
+          'x-vercel-filename': file.name, 
+        },
+        body: file, // Send the raw file directly, as the Vercel function reads the stream
       });
 
       if (!response.ok) {
